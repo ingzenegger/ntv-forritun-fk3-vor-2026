@@ -21,7 +21,7 @@ export function Form() {
             <CardHeader>
                 <CardTitle>Form</CardTitle>
             </CardHeader>
-            <div className="w-full max-w-md">
+            <div className="w-full max-w-md bg-red-500 hover:bg-blue-500">
                 <form onSubmit={(e) => {
                     e.preventDefault()
                     window.alert(`${myName} just placed an order for ${selectedFruit}`)
