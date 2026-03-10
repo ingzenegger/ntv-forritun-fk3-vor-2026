@@ -1,6 +1,6 @@
-import { useProducts } from "@/hooks/useProducts.js";
-import { useCart } from "@/hooks/useCart.js";
-import { ProductCard } from "@/components/ProductCard.js";
+import { useProducts } from "@/features/product/hooks/useProducts.js";
+import { useCart } from "@/features/cart/hooks/useCart.js";
+import { ProductCard } from "@/features/product/components/ProductCard.js";
 
 export function ProductListPage() {
   const { products, loading } = useProducts();
@@ -13,11 +13,7 @@ export function ProductListPage() {
       <h2>Products</h2>
       <div className="product-grid">
         {products.map((product) => (
-          <ProductCard
-            key={product.id}
-            product={product}
-            onAdd={addToCart}
-          />
+          <ProductCard key={product.id} product={product} onAdd={addToCart} />
         ))}
       </div>
     </section>
