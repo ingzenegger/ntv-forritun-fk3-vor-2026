@@ -8,6 +8,7 @@ import {
 } from "@remix-run/react";
 
 import appStyles from "./app.css?url";
+import { useState, createContext, Dispatch, SetStateAction } from "react";
 
 export const links: LinksFunction = () => [
   { rel: "stylesheet", href: appStyles },
@@ -16,11 +17,21 @@ export const links: LinksFunction = () => [
 export function meta() {
   return [
     { title: "Remix Theme App" },
-    { name: "description", content: "Simple Remix app with light and dark theme" },
+    {
+      name: "description",
+      content: "Simple Remix app with light and dark theme",
+    },
   ];
 }
+type ThemeContextType = {
+  theme: string;
+  setThemeState: Dispatch<SetStateAction<string>>;
+};
+export const ThemeContext = createContext<ThemeContextType>('light');
 
 export default function App() {
+  const [theme, setThemeState] = useState<string>("light");
+  // const value = { theme, setThemeState };
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -30,9 +41,11 @@ export default function App() {
         <Links />
       </head>
       <body>
-        <Outlet />
-        <ScrollRestoration />
-        <Scripts />
+        <ThemeContext.Provider value={{ theme, setThemeState }}>
+          <Outlet />
+          <ScrollRestoration />
+          <Scripts />
+        </ThemeContext.Provider>
       </body>
     </html>
   );
