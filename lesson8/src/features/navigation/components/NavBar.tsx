@@ -1,10 +1,11 @@
-import { NavLink } from 'react-router-dom';
-import { ShoppingBag, ShoppingCart } from 'lucide-react';
-import { useCart } from '@/features/cart/context/CartContext';
-import { cn } from '@/shared/lib/utils';
+import { NavLink } from "react-router-dom";
+import { ShoppingBag, ShoppingCart } from "lucide-react";
+
+import { cn } from "@/shared/lib/utils";
+import { useAppStore } from "@/shared/store/appStore";
 
 export function NavBar() {
-  const { items } = useCart();
+  const { items } = useAppStore();
   const cartCount = items.reduce((sum, i) => sum + i.quantity, 0);
 
   return (
@@ -15,8 +16,8 @@ export function NavBar() {
           end
           className={({ isActive }) =>
             cn(
-              'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary',
-              isActive ? 'text-foreground' : 'text-muted-foreground',
+              "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary",
+              isActive ? "text-foreground" : "text-muted-foreground",
             )
           }
         >
@@ -27,8 +28,8 @@ export function NavBar() {
           to="/cart"
           className={({ isActive }) =>
             cn(
-              'flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary',
-              isActive ? 'text-foreground' : 'text-muted-foreground',
+              "flex items-center gap-2 text-sm font-medium transition-colors hover:text-primary",
+              isActive ? "text-foreground" : "text-muted-foreground",
             )
           }
         >

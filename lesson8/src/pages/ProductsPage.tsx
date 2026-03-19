@@ -1,7 +1,5 @@
-import { Products } from '@/features/products';
-import { useCart } from '@/features/cart/context/CartContext';
+import { Products } from "@/features/products";
 
 export function ProductsPage() {
-  const { addToCart } = useCart();
-  return <Products onAddToCart={addToCart} />;
+  return <Products />;
 }

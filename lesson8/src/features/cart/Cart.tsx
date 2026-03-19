@@ -1,14 +1,13 @@
-import { CartItemRow } from './components/CartItemRow';
-import { CartSummary } from './components/CartSummary';
-import type { CartItem } from './types';
+import { useAppStore } from "@/shared/store/appStore";
+import { CartItemRow } from "./components/CartItemRow";
+import { CartSummary } from "./components/CartSummary";
 
-type CartProps = {
-  items: CartItem[];
-  onQuantityChange?: (productId: string, quantity: number) => void;
-  onRemove?: (productId: string) => void;
-};
-
-export function Cart({ items, onQuantityChange, onRemove }: CartProps) {
+export function Cart() {
+  const {
+    items,
+    updateQuantity: onQuantityChange,
+    removeItem: onRemove,
+  } = useAppStore();
   return (
     <section className="space-y-6">
       <h2 className="text-lg font-semibold">Cart</h2>

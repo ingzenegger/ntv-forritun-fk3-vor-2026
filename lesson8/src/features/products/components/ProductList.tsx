@@ -1,17 +1,17 @@
-import { ProductCard } from './ProductCard';
-import type { Product } from '../types';
+import { ProductCard } from "./ProductCard";
+import type { Product } from "../types";
 
 type ProductListProps = {
   products: Product[];
-  onAddToCart?: (product: Product) => void;
+  // onAddToCart?: (product: Product) => void;
 };
 
-export function ProductList({ products, onAddToCart }: ProductListProps) {
+export function ProductList({ products }: ProductListProps) {
   return (
     <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
       {products.map((product) => (
         <li key={product.id}>
-          <ProductCard product={product} onAddToCart={onAddToCart} />
+          <ProductCard product={product} />
         </li>
       ))}
     </ul>

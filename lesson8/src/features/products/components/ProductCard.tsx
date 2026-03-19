@@ -4,15 +4,17 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from '@/shared/components/ui/card';
-import type { Product } from '../types';
+} from "@/shared/components/ui/card";
+import type { Product } from "../types";
+import { useAppStore } from "@/shared/store/appStore";
 
 type ProductCardProps = {
   product: Product;
   onAddToCart?: (product: Product) => void;
 };
 
-export function ProductCard({ product, onAddToCart }: ProductCardProps) {
+export function ProductCard({ product }: ProductCardProps) {
+  const onAddToCart = useAppStore((state) => state.addToCart);
   return (
     <Card>
       <CardHeader>
@@ -23,9 +25,9 @@ export function ProductCard({ product, onAddToCart }: ProductCardProps) {
           <p className="text-muted-foreground text-sm">{product.description}</p>
         )}
         <p className="font-medium">
-          {new Intl.NumberFormat('is-IS', {
-            style: 'currency',
-            currency: 'ISK',
+          {new Intl.NumberFormat("is-IS", {
+            style: "currency",
+            currency: "ISK",
           }).format(product.price)}
         </p>
       </CardContent>
