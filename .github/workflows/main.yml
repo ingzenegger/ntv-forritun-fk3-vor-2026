@@ -6,7 +6,7 @@ on:
   pull_request:
 
 env:
-  PROJECT: "lesson8"
+  PROJECT: "Inga_lausnir/lesson8"
  
 jobs:
   build:
