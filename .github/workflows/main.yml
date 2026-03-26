@@ -4,6 +4,9 @@ on:
   push:
     branches: [main]
   pull_request:
+
+env:
+  PROJECT: "Inga_lausnir/lesson8"
  
 jobs:
   build:
@@ -14,8 +17,10 @@ jobs:
         with:
           node-version: 20
           cache: npm
-          cache-dependency-path: Inga_lausnir/lesson8/package-lock.json
+          cache-dependency-path: ${{ env.PROJECT }}/package-lock.json
       - run: npm ci
-        working-directory: Inga_lausnir/lesson8
+        working-directory: ${{ env.PROJECT }}
       - run: npm run lint
-        working-directory: Inga_lausnir/lesson8
+        working-directory: ${{ env.PROJECT }}
+      - run: npm run test
+        working-directory: ${{ env.PROJECT }}
