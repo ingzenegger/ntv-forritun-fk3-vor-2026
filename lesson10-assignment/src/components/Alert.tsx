@@ -3,18 +3,34 @@
 // 2. `title` is a required string
 // 3. `onDismiss` is an optional callback with no arguments
 // 4. All remaining native <div> props (className, role, aria-*, etc.) are forwarded and type-checked
-function Alert({ severity, title, children, onDismiss, className, ...props }: any) {
-  const severityStyles: any = {
-    info: 'bg-blue-50 border-blue-200 text-blue-800',
-    warning: 'bg-yellow-50 border-yellow-200 text-yellow-800',
-    error: 'bg-red-50 border-red-200 text-red-800',
-    success: 'bg-green-50 border-green-200 text-green-800',
+
+type Severity = "info" | "warning" | "error" | "success";
+
+interface AlertProps extends React.HTMLAttributes<HTMLDivElement> {
+  severity: Severity;
+  title: string;
+  onDismiss?: () => void;
+}
+
+function Alert({
+  severity,
+  title,
+  children,
+  onDismiss,
+  className,
+  ...props
+}: AlertProps) {
+  const severityStyles: Record<Severity, string> = {
+    info: "bg-blue-50 border-blue-200 text-blue-800",
+    warning: "bg-yellow-50 border-yellow-200 text-yellow-800",
+    error: "bg-red-50 border-red-200 text-red-800",
+    success: "bg-green-50 border-green-200 text-green-800",
   };
 
   return (
     <div
       role="alert"
-      className={`rounded border p-4 ${severityStyles[severity || 'info']} ${className || ''}`}
+      className={`rounded border p-4 ${severityStyles[severity || "info"]} ${className || ""}`}
       {...props}
     >
       <div className="flex items-start justify-between">

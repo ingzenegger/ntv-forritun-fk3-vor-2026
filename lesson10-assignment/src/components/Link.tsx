@@ -5,18 +5,31 @@
 // if as="button" then `disabled` and `type` should autocomplete.
 // Default `as` to 'a' when not provided.
 // `variant` should only accept 'default' | 'muted' | 'underline'.
-function Link({ as, variant, children, className, ...props }: any) {
-  const Component = as || 'a';
+type Variant = "default" | "muted" | "underline";
 
-  const variantStyles: any = {
-    default: 'text-blue-600 hover:text-blue-800',
-    muted: 'text-gray-500 hover:text-gray-700',
-    underline: 'text-blue-600 underline underline-offset-2 hover:text-blue-800',
+type LinkProps<E extends React.ElementType> = {
+  as?: E;
+  variant: Variant;
+} & React.ComponentPropsWithoutRef<E>;
+
+function Link<E extends React.ElementType = "a">({
+  as,
+  variant,
+  children,
+  className,
+  ...props
+}: LinkProps<E>) {
+  const Component = as || "a";
+
+  const variantStyles: Record<Variant, string> = {
+    default: "text-blue-600 hover:text-blue-800",
+    muted: "text-gray-500 hover:text-gray-700",
+    underline: "text-blue-600 underline underline-offset-2 hover:text-blue-800",
   };
 
   return (
     <Component
-      className={`inline-flex items-center gap-1 ${variantStyles[variant || 'default']} ${className || ''}`}
+      className={`inline-flex items-center gap-1 ${variantStyles[variant || "default"]} ${className || ""}`}
       {...props}
     >
       {children}
