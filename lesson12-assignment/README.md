@@ -10,6 +10,7 @@ React app needs:
 All errors in the app should flow through a single `logger` module, so that swapping `console` for Sentry/LogRocket later is a one-file change.
 
 The API you'll fetch from is:
+
 ```
 https://jsonplaceholder.typicode.com/posts?_limit=5
 ```
@@ -25,18 +26,18 @@ npm run dev
 
 Work through the TODO comments in the following files, roughly in this order:
 
-1. `src/shared/lib/logger.ts` — build a tiny `logger` that wraps `console`.
-2. `src/shared/components/ErrorBoundary.tsx` — build a class-based `ErrorBoundary`.
-3. `src/components/Layout.tsx` — wrap `<Outlet />` in your `ErrorBoundary`.
-4. `src/main.tsx` — wire `window.addEventListener('error', ...)` and `'unhandledrejection'` to `logger.error`.
-5. `src/App.tsx` — configure `QueryClient` with a `QueryCache({ onError })` that forwards every failing query to `logger.error`.
-6. `src/pages/PostsReactQuery.tsx` — fetch with `useQuery`, use `isError` / `error.message` / `refetch`, render the error UI.
-7. `src/pages/IndexPage.tsx` — add three crash-test buttons: render crash (hits `ErrorBoundary`), unhandled promise rejection (hits `window.unhandledrejection`), and `setTimeout` throw (hits `window.error`).
+1.  [x] `src/shared/lib/logger.ts` — build a tiny `logger` that wraps `console`.
+2.  [x] `src/shared/components/ErrorBoundary.tsx` — build a class-based `ErrorBoundary`.
+3.  [x] `src/components/Layout.tsx` — wrap `<Outlet />` in your `ErrorBoundary`.
+4.  [x] `src/main.tsx` — wire `window.addEventListener('error', ...)` and `'unhandledrejection'` to `logger.error`.
+5.  [x] `src/App.tsx` — configure `QueryClient` with a `QueryCache({ onError })` that forwards every failing query to `logger.error`.
+6.  [x] `src/pages/PostsReactQuery.tsx` — fetch with `useQuery`, use `isError` / `error.message` / `refetch`, render the error UI.
+7.  [] `src/pages/IndexPage.tsx` — add three crash-test buttons: render crash (hits `ErrorBoundary`), unhandled promise rejection (hits `window.unhandledrejection`), and `setTimeout` throw (hits `window.error`).
 
 ## How to verify
 
 - Visit `/posts-react-query`. You should see 5 posts.
-- Temporarily change `API_URL` to `https://jsonplaceholder.typicode.com/does-not-exist`. The page should show a red error box with a "Try again" button (NOT a blank screen) AND log `[error]` to the console via your logger.
+- Temporarily change `API_URL` to `https://jsonplaceholder.typicode.com/does-not-exist`. The page should show a red error box with a "Try again" button (NOT a blank screen) AND log `[error]` to the console via your logger. 
 - Click each button on `/` (Index). Each click should produce a `[error]` log entry in the console. The render-crash button should also show the `ErrorBoundary` fallback UI instead of a white screen.
 
 ## Hints

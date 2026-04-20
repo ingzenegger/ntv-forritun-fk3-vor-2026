@@ -1,4 +1,5 @@
-import { NavLink, Outlet } from 'react-router-dom';
+import { ErrorBoundary } from "@/shared/components/ErrorBoundary";
+import { NavLink, Outlet } from "react-router-dom";
 
 // TODO: Import your ErrorBoundary and wrap <Outlet /> with it so that if any
 // routed page throws during render, the fallback UI is shown instead of a
@@ -10,17 +11,30 @@ export function Layout() {
     <div className="min-h-screen bg-background">
       <nav className="border-b px-4 py-3">
         <div className="mx-auto flex w-full max-w-6xl gap-4">
-          <NavLink to="/" end className={({ isActive }) => isActive ? "font-bold underline" : "hover:underline"}>
+          <NavLink
+            to="/"
+            end
+            className={({ isActive }) =>
+              isActive ? "font-bold underline" : "hover:underline"
+            }
+          >
             Home
           </NavLink>
-          <NavLink to="/posts-react-query" className={({ isActive }) => isActive ? "font-bold underline" : "hover:underline"}>
+          <NavLink
+            to="/posts-react-query"
+            className={({ isActive }) =>
+              isActive ? "font-bold underline" : "hover:underline"
+            }
+          >
             Posts
           </NavLink>
         </div>
       </nav>
       <main className="mx-auto w-full max-w-6xl px-4 py-8">
         {/* TODO: wrap <Outlet /> with <ErrorBoundary> */}
-        <Outlet />
+        <ErrorBoundary>
+          <Outlet />
+        </ErrorBoundary>
       </main>
     </div>
   );

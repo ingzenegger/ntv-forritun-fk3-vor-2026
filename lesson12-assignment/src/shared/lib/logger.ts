@@ -12,4 +12,10 @@
 
 export const logger = {
   // TODO
+  log(...args: unknown[]) {
+    console.log("[log]", ...args);
+  },
+  error(message: string, error?: unknown) {
+    console.error("[error]", error, message);
+  },
 };

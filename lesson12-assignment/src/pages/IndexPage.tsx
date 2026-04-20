@@ -1,10 +1,40 @@
+import { useState } from "react";
+
+function crashOnRender() {
+  throw new Error("Crash on render");
+}
+
+function CrashButton() {
+  const [crash, setCrash] = useState(false);
+  if (crash) {
+    crashOnRender();
+  }
+  return (
+    <button
+      onClick={() => setCrash(true)}
+      className="border-2 border-red-900 m-2 p-2"
+    >
+      Crash on next render
+    </button>
+  );
+}
+
 export function IndexPage() {
+  const throwAsync = () => {
+    Promise.reject(new Error("Unhandled promise rejection"));
+  };
+
+  const throwInTimeout = () => {
+    setTimeout(() => {
+      throw new Error("error from setTimeout");
+    }, 0);
+  };
   // TODO: Add three test buttons so you can verify every part of your error
   // handling is wired up correctly. Each button targets a different handler:
   //
   // 1. "Crash on next render" → flips a useState flag that causes a child
   //    component to `throw new Error(...)` during render.
-  //    => should be caught by <ErrorBoundary>
+  //    => should be caught by <ErrorBoundary> X
   //
   // 2. "Unhandled promise rejection" → onClick creates a `Promise.reject(...)`
   //    with no .catch().
@@ -23,6 +53,21 @@ export function IndexPage() {
       <p className="mt-2 text-gray-600">
         TODO: Add crash test buttons here (see comments in IndexPage.tsx).
       </p>
+      <div>
+        <CrashButton />
+        <button
+          onClick={throwAsync}
+          className="border-2 border-red-900 m-2 p-2"
+        >
+          Throw unhandled promise rejection
+        </button>
+        <button
+          onClick={throwInTimeout}
+          className="border-2 border-red-900 m-2 p-2"
+        >
+          Throw inside timeout
+        </button>
+      </div>
     </main>
   );
 }

@@ -1,9 +1,14 @@
-import { Routes, Route } from 'react-router-dom';
-import './App.css';
-import { Layout } from '@/components/Layout';
-import { IndexPage } from './pages/IndexPage';
-import { PostsReactQuery } from './pages/PostsReactQuery';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { Routes, Route } from "react-router-dom";
+import "./App.css";
+import { Layout } from "@/components/Layout";
+import { IndexPage } from "./pages/IndexPage";
+import { PostsReactQuery } from "./pages/PostsReactQuery";
+import {
+  QueryCache,
+  QueryClient,
+  QueryClientProvider,
+} from "@tanstack/react-query";
+import { logger } from "./shared/lib/logger";
 
 // TODO: Configure the QueryClient with a QueryCache whose onError callback
 // forwards every failing query into `logger.error(...)`. The message should
@@ -12,6 +17,12 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 // This means: any useQuery in the app that fails will automatically be
 // reported to your logger — you don't have to call logger.error in every page.
 export const queryClient = new QueryClient();
+
+queryCache: new QueryCache({
+  onError: (error, query) => {
+    logger.error(`Query failed: ${String(query.queryKey)}`, error);
+  },
+});
 
 function App() {
   return (
