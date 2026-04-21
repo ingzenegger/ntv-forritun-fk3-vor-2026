@@ -1,1 +1,11 @@
-describe('add', () => {});
+import { add } from "./math";
+
+describe("add", () => {
+  it("adds two numbers", () => {
+    expect(add(1, 2)).toBe(3);
+  });
+
+  it("can deal with negative numbers", () => {
+    expect(add(-1, 1)).toBe(0);
+  });
+});
