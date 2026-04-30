@@ -2,6 +2,7 @@ import { Counter } from "@/components/Counter/Counter";
 import { Greeting } from "@/components/Greeting/Greeting";
 import PartyBox from "@/components/PartyBox/partyBox";
 import { QuoteCard } from "@/components/Quote/QuoteCard";
+import { Link } from "react-router-dom";
 
 export function IndexPage() {
   return (
@@ -39,6 +40,7 @@ export function IndexPage() {
       <Greeting />
       <QuoteCard />
       <PartyBox />
+      <Link to="/storyBookTasks">Storybook TaskList Screen</Link>
     </div>
   );
 }
