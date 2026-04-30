@@ -16,6 +16,7 @@ jobs:
         with:
           fetch-depth: 0
       - run: npm install
+        working-directory: ./lesson14
         #👇 Adds Chromatic as a step in the workflow
       - uses: chromaui/action@latest
         # Options required for Chromatic's GitHub Action
