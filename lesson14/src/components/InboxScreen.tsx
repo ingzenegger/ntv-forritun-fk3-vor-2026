@@ -26,7 +26,7 @@ export default function InboxScreen() {
     );
   }
   return (
-    <div className="page lists-show" style={{ backgroundColor: "red" }}>
+    <div className="page lists-show">
       <nav>
         <h1 className="title-page">Taskbox</h1>
       </nav>
