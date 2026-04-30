@@ -22,7 +22,9 @@
 }
 
 .list-item.TASK_ARCHIVED {
-  opacity: 0.72;
+  /* opacity: 0.72; */
+  color: #4a5568;
+  text-decoration: line-through;
 }
 
 /* Falinn raunverulegur gátreitur — sýnilegur custom kassi */
@@ -71,7 +73,7 @@
 }
 
 .list-item.TASK_ARCHIVED .checkbox-custom::after {
-  content: '';
+  content: "";
   display: block;
   width: 0.25rem;
   height: 0.5rem;
@@ -135,7 +137,7 @@
 }
 
 .icon-star::before {
-  content: '★';
+  content: "★";
   font-size: 1.125rem;
   color: var(--muted-foreground);
 }
