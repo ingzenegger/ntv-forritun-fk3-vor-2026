@@ -1,6 +1,7 @@
-import { Counter } from '@/components/Counter/Counter';
-import { Greeting } from '@/components/Greeting/Greeting';
-import { QuoteCard } from '@/components/Quote/QuoteCard';
+import { Counter } from "@/components/Counter/Counter";
+import { Greeting } from "@/components/Greeting/Greeting";
+import PartyBox from "@/components/PartyBox/partyBox";
+import { QuoteCard } from "@/components/Quote/QuoteCard";
 
 export function IndexPage() {
   return (
@@ -12,24 +13,24 @@ export function IndexPage() {
         <ul className="text-muted-foreground mt-2 list-inside list-disc space-y-1.5 text-sm">
           <li>
             <strong className="text-foreground">Vitest</strong> — rökfræði,
-            hjálparföll og smá hegðun í íhlutum (jsdom).{' '}
+            hjálparföll og smá hegðun í íhlutum (jsdom).{" "}
             <code className="bg-muted rounded px-1 py-0.5 font-mono text-xs">
               npm run test:run
             </code>
           </li>
           <li>
             <strong className="text-foreground">Storybook</strong> — sjónræn
-            ásýnd, mismunandi ástand og sýning á gagnvirkni.{' '}
+            ásýnd, mismunandi ástand og sýning á gagnvirkni.{" "}
             <code className="bg-muted rounded px-1 py-0.5 font-mono text-xs">
               npm run storybook
             </code>
           </li>
           <li>
             <strong className="text-foreground">Cypress</strong> — enda-í-enda
-            próf í vafra gegn keyrandi appi.{' '}
+            próf í vafra gegn keyrandi appi.{" "}
             <code className="bg-muted rounded px-1 py-0.5 font-mono text-xs">
               npm run e2e
-            </code>{' '}
+            </code>{" "}
             (ræsir Vite + Cypress)
           </li>
         </ul>
@@ -37,6 +38,7 @@ export function IndexPage() {
       <Counter />
       <Greeting />
       <QuoteCard />
+      <PartyBox />
     </div>
   );
 }
