@@ -1,7 +1,5 @@
-import type { TaskData } from '@/types';
-import './Task.css';
-
-
+import type { TaskData } from "@/types";
+import "./Task.css";
 
 type TaskProps = {
   /** Composition of the task */
@@ -29,7 +27,7 @@ export default function Task({
           disabled={true}
           name="checked"
           id={`archiveTask-${id}`}
-          checked={state === 'TASK_ARCHIVED'}
+          checked={state === "TASK_ARCHIVED"}
         />
         <span className="checkbox-custom" onClick={() => onArchiveTask(id)} />
       </label>
@@ -42,9 +40,10 @@ export default function Task({
           name="title"
           id={`title-${id}`}
           placeholder="Input title"
+          style={{ backgroundColor: "red" }}
         />
       </label>
-      {state !== 'TASK_ARCHIVED' && (
+      {state !== "TASK_ARCHIVED" && (
         <button
           className="pin-button"
           onClick={() => onPinTask(id)}

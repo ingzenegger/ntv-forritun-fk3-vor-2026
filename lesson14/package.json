@@ -15,7 +15,8 @@
     "cypress:run": "cypress run",
     "test:all": "npm run test:run && npm run e2e",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "chromatic": "npx chromatic --project-token=chpt_5f8de9be0363c54"
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.11.2",
