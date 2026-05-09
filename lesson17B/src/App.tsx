@@ -1,12 +1,13 @@
-import './App.css';
-import { Layout } from '@/components/Layout';
-import { ProtectedRoute } from '@/components/ProtectedRoute';
-import { ROUTES } from '@/navigation';
-import { AboutPage } from '@/pages/AboutPage';
-import { DashboardPage } from '@/pages/DashboardPage';
-import { HomePage } from '@/pages/HomePage';
-import { LoginPage } from '@/pages/LoginPage';
-import { Navigate, Route, Routes } from 'react-router-dom';
+import "./App.css";
+import { Layout } from "@/components/Layout";
+import { ProtectedRoute } from "@/components/ProtectedRoute";
+import { ROUTES } from "@/navigation";
+import { AboutPage } from "@/pages/AboutPage";
+import { DashboardPage } from "@/pages/DashboardPage";
+import { HomePage } from "@/pages/HomePage";
+import { LoginPage } from "@/pages/LoginPage";
+import { SignIn } from "@clerk/react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
 function App() {
   return (
@@ -14,7 +15,7 @@ function App() {
       <Route path="/" element={<Layout />}>
         <Route index element={<HomePage />} />
         <Route path="about" element={<AboutPage />} />
-        <Route path="login" element={<LoginPage />} />
+        <Route path="login" element={<SignIn />} />
         <Route
           path="dashboard"
           element={

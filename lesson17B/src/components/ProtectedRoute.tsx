@@ -1,25 +1,23 @@
-import { useAuth } from '@/contexts/auth-context';
-import { ROUTES } from '@/navigation';
-import { Navigate, useLocation } from 'react-router-dom';
-import type { ReactNode } from 'react';
+import { ROUTES } from "@/navigation";
+import { Navigate, useLocation } from "react-router-dom";
+import type { ReactNode } from "react";
+import { useAuth } from "@clerk/react";
 
 type ProtectedRouteProps = {
   children: ReactNode;
 };
 
 export function ProtectedRoute({ children }: ProtectedRouteProps) {
-  const { isAuthenticated } = useAuth();
+  const { isSignedIn, isLoaded } = useAuth();
   const location = useLocation();
 
-  if (!isAuthenticated) {
-    return (
-      <Navigate
-        to={ROUTES.login}
-        replace
-        state={{ from: location }}
-      />
-    );
+  if (!isLoaded) {
+    return <div>Loading...</div>; // Or your custom Spinner
   }
 
-  return children;
+  if (!isSignedIn) {
+    return <Navigate to={ROUTES.login} replace state={{ from: location }} />;
+  }
+
+  return <>{children}</>;
 }
